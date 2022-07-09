@@ -4,6 +4,7 @@ const controllers = require("../../controllers/auth");
 const { validation } = require("../../middlewares");
 const { schemas } = require("../../models/user");
 
-router.post("/register", validation(schemas.register), controllers.register);
+router.post("/signup", validation(schemas.register), controllers.register);
+router.post("/login", validation(schemas.login), controllers.login);
 
 module.exports = router;

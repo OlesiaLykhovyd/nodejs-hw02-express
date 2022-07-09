@@ -34,8 +34,14 @@ const register = Joi.object({
   token: Joi.string(),
 });
 
+const login = Joi.object({
+  password: Joi.string().required(),
+  email: Joi.string().required(),
+});
+
 const schemas = {
   register,
+  login,
 };
 
 module.exports = { User, schemas };
