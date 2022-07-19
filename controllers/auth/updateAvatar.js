@@ -13,16 +13,17 @@ const updateAvatar = async (req, res, next) => {
     const newName = `${_id}.${extention}`;
     const resultDir = path.join(avatarsDir, newName);
 
+    await fs.rename(tempDir, resultDir);
+
     jimp
-      .read(tempDir)
+      .read(resultDir)
       .then((img) => {
         return img.resize(250, 250);
       })
+      .write(resultDir)
       .catch((err) => {
         console.error(err);
       });
-
-    await fs.rename(tempDir, resultDir);
 
     const avatarURL = path.join("avatars", newName);
 
